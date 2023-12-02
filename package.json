@@ -1,0 +1,30 @@
+{
+  "name": "provinces-api",
+  "version": "1.0.0",
+  "description": "adapter",
+  "main": "server.js",
+  "repository": "",
+  "author": "cyber86z",
+  "license": "MIT",
+  "dependencies": {
+    "@netlify/functions": "^2.4.0",
+    "@types/express": "^4.17.21",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "google-auth-library": "^9.4.1",
+    "googleapis": "^129.0.0",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^7.3.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "readline": "^1.3.0",
+    "serverless-http": "^3.2.0"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  }
+}
