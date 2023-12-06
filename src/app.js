@@ -46,17 +46,24 @@ app.get("/districts", async (req, res) => {
         });
       }
       const sheets = google.sheets({ version: "v4", auth: jwtClient });
-      const { data } = await sheets.spreadsheets.values.get({
-        spreadsheetId: "15Dn4fmpLlU0gfU07AIzaK03myoNJm7G0unssfBXvPZM",
-        range: "Main!A1:B10",
-      });
-
-      const values = data.values || [];
-
-      res.status(200).send({
-        message: values.length ? "Correct for get data" : "No data found",
-        data: values.slice(1).map(([label, value]) => ({ label, value })),
-      });
+      sheets.spreadsheets.values
+        .get({
+          spreadsheetId: "15Dn4fmpLlU0gfU07AIzaK03myoNJm7G0unssfBXvPZM",
+          range: "Main!A1:B10",
+        })
+        .then(({ data }) => {
+          const values = data.values || [];
+          res.status(200).send({
+            message: values.length ? "Correct for get data" : "No data found",
+            data: values.slice(1).map(([label, value]) => ({ label, value })),
+          });
+        })
+        .catch((e) =>
+          res.status(200).send({
+            message: e.message || "Error to get data",
+            data: [],
+          })
+        );
     });
   } catch (error) {
     res.status(200).send({
@@ -77,17 +84,24 @@ app.get("/districts/:id", (req, res) => {
         });
       }
       const sheets = google.sheets({ version: "v4", auth: jwtClient });
-      const { data } = await sheets.spreadsheets.values.get({
-        spreadsheetId: "15Dn4fmpLlU0gfU07AIzaK03myoNJm7G0unssfBXvPZM",
-        range: `${id}!A1:B10`,
-      });
-
-      const values = data.values || [];
-
-      res.status(200).send({
-        message: values.length ? "Correct for get data" : "No data found",
-        data: values.slice(1).map(([label, value]) => ({ label, value })),
-      });
+      sheets.spreadsheets.values
+        .get({
+          spreadsheetId: "15Dn4fmpLlU0gfU07AIzaK03myoNJm7G0unssfBXvPZM",
+          range: `${id}!A1:B10`,
+        })
+        .then(({ data }) => {
+          const values = data.values || [];
+          res.status(200).send({
+            message: values.length ? "Correct for get data" : "No data found",
+            data: values.slice(1).map(([label, value]) => ({ label, value })),
+          });
+        })
+        .catch((e) =>
+          res.status(200).send({
+            message: e.message || "Error to get data",
+            data: [],
+          })
+        );
     });
   } catch (error) {
     res.status(200).send({
