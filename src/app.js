@@ -49,7 +49,7 @@ app.get("/districts", async (req, res) => {
       sheets.spreadsheets.values
         .get({
           spreadsheetId: "15Dn4fmpLlU0gfU07AIzaK03myoNJm7G0unssfBXvPZM",
-          range: "Main!A1:B10",
+          range: "Main!A1:B20",
         })
         .then(({ data }) => {
           const values = data.values || [];
@@ -87,7 +87,7 @@ app.get("/districts/:id", (req, res) => {
       sheets.spreadsheets.values
         .get({
           spreadsheetId: "15Dn4fmpLlU0gfU07AIzaK03myoNJm7G0unssfBXvPZM",
-          range: `${id}!A1:B10`,
+          range: `${id}!A1:B20`,
         })
         .then(({ data }) => {
           const values = data.values || [];
